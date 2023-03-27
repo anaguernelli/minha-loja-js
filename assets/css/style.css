@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: whitesmoke;
+}
+
+header {
+    padding: 1rem;
+    color: white;
+    background: blueviolet;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;;
+}
+
+section {
+    /* topo esquerda baixo direita */
+    padding: 3rem 3rem;
+}
+
+input {
+    padding: .8rem;
+    border: 0.01rem solid cornflowerblue;
+    border-radius: 0.4rem;
+    outline: 0;
+}
+
+input:focus {
+    box-shadow: 1px 1px 1px 2px blueviolet;
+}
+
+button {
+    padding: .8rem;
+    background-color: blueviolet;
+    color: white;
+    border: 0;
+    border-radius: .5rem;
+    outline: 0;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: rgb(83, 28, 134);
+    transition: 300ms ease-in-out;
+    cursor: pointer;
+}
+
+table {
+    /* borda mais fina */
+    border-collapse: collapse;
+    border: 1px solid cornflowerblue;
+    width: 100%;
+}
+
+
+table th {
+    background-color: blueviolet;    
+    color: white;
+}
+
+table th, td {
+    padding: 0.1rem 0.5rem;
+    text-align: left;
+}
+
+table td img {
+    width: 1.6rem;
+    margin: .3rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.white-bg {
+    background-color: white;
+
+}
+
+.card {
+    border: 1px solid cornflowerblue;
+    padding: 1rem;
+    /* margin-top: 1.4rem;
+    margin-bottom: 1.3rem; */
+    margin: 1.4rem 0 1.3rem;
+    border-radius: .5rem;
+}
+
+.line-input {
+    display: grid;
+    margin-bottom: 1rem;
+}
+
+.line-input label {
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
