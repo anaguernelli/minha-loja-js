@@ -1,19 +1,42 @@
 class Produto {
     constructor() {
-        this.id = 1
+        this.id = 1;
         // a gente tem um objeto dentro do nosso array
-        this.arrayProdutos = []
+        this.arrayProdutos = [];
+        // o item q estiver diferente de null, vai significar q está então fazendo uma edição
+        // se estiver igual null, então é uma inserção de dados, o q fará o btn trocar o nome para salvar
+        this.editId = null;
     }
 
     salvar() {
         // quando clica no salvar, estará lendo nossos dados
         let produto = this.lerDados();
         if(this.validaCampo(produto)) {
-            this.adicionar(produto);
+            if(this.editId == null){
+                this.adicionar(produto);
+            } else {
+                // arg passado será trocado pelo número do id que está sendo editado
+                this.atualizar(this.editId, produto)
+                // a gente passa outro param outro obj produto e no atualizar() recebemos nosso produto
+            }
         }
 
         this.listaTabela();
-        this.cancelar();
+        this.blank();
+    }
+
+    atualizar(id, produto){
+        let btn = document.getElementById('btn1');
+        btn.innerText = 'Atualizar';
+
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            // verificando se os ids são iguais
+            if (this.arrayProdutos[i].id == id) {
+                this.arrayProdutos[i].nomeProduto = produto.nomeProduto;
+                this.arrayProdutos[i].valorProduto = produto.valorProduto;
+            }
+            
+        }
     }
 
 
@@ -40,6 +63,9 @@ class Produto {
             let imgEdit = document.createElement('img');
             imgEdit.src = 'assets/img/editar-texto.png';
 
+            // passamos para json para manipular no html. e na posição i pois agora estamos dentro do for()
+            imgEdit.setAttribute("onclick", "produto.editar("+ JSON.stringify(this.arrayProdutos[i]) +")");
+
             let imgDelete = document.createElement('img');
             imgDelete.src = 'assets/img/excluir.png';
             // agr temos que atribuir uma função ao nosso delete com setattribute
@@ -49,14 +75,26 @@ class Produto {
             // "+ this.arrayProdutos[i].id +"
             imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")");
 
+
             td_acao.appendChild(imgEdit);
             td_acao.appendChild(imgDelete);
         }
     }
 
     adicionar(produto){
+        // vamos converter p número decimal
+        produto.valorProduto = parseFloat(produto.valorProduto)
         this.arrayProdutos.push(produto);
         this.id++;
+    }
+
+    editar(dados){
+        this.editId = dados.id
+        // a gente quer pegar os dados q "readicioná-los" nos inputs Produto e Valor
+        // então estamos pegando pelo id do input e atribuindo a eles os nomes q havíamos dados no lerDados()
+        this.atualizar()
+        document.getElementById('nproduct').value = dados.nomeProduto;
+        document.getElementById('vproduct').value = dados.valorProduto;
     }
 
     lerDados() {
@@ -64,9 +102,9 @@ class Produto {
         // ok adicionamos pra dentro do produto esses 3 campos
         // pra podermos receber o id, tivemos q ir no salvar e botar como um var
         produto.id = this.id;
-        // nós q estamos dando o nomeProduto
-        produto.nomeProduto = document.getElementById('produto').value;
-        produto.valorProduto = document.getElementById('valor').value;
+        // nós q estamos dando o nomeProduto e valorProduto aqui
+        produto.nomeProduto = document.getElementById('nproduct').value;
+        produto.valorProduto = document.getElementById('vproduct').value;
 
         return produto;
     }
@@ -89,9 +127,13 @@ class Produto {
         return true
     }
 
-    cancelar() {
-        document.getElementById('produto').value = '';
-        document.getElementById('valor').value = '';
+    blank() {
+        document.getElementById('nproduct').value = '';
+        document.getElementById('vproduct').value = '';
+
+        document.getElementById('btn1').innerText = 'Salvar';
+        // após realizar edição, então tbm temos q limpar os dados, então voltando o editid para null novamente
+        this.editId = null;
     }
 
     deletar(id){
@@ -111,9 +153,7 @@ class Produto {
         }
     }
 
-    editar(){
-        alert('editar');
-    }
+
 }
 
 // temos q instaciar esse nosso objeto

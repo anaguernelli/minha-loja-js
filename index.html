@@ -24,17 +24,17 @@
 
         <div class="card white-bg">
             <div class="line-input">
-                <label for="">Produto</label>
-                <input type="text" id="produto" placeholder="Nome do produto">
+                <label>Produto</label>
+                <input type="text" id="nproduct" placeholder="Nome do produto">
             </div>
             <div class="line-input">
-                <label for="">Valor</label>
-                <input type="number" id="valor" placeholder="Valor do produto" min="0">
+                <label>Valor</label>
+                <input type="number" id="vproduct" placeholder="Valor do produto" min="0">
             </div>
         </div>
 
         <div>
-            <button onclick="produto.salvar()">Salvar</button>
+            <button onclick="produto.salvar()" id="btn1">Salvar</button>
             <button onclick="produto.cancelar()">Cancelar</button>
         </div>
     </section>
