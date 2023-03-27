@@ -95,20 +95,24 @@ class Produto {
     }
 
     deletar(id){
-        // vamos ter que percorrer os itens do nosso array p verificar se nosso id recebido é o mesmo id que tem no array
-        for(let i = 0; i < this.arrayProdutos.length; i++){
-            if(this.arrayProdutos[i].id == id){
-                // aqui vai acontecer o deletar do nosso registro array
-                // splice() altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos.
-                // passando índice do array e segunda arg é quantos registros queremos deletar
-                this.arrayProdutos.splice(i, 1)
-                
+        // se confirmar
+        if(confirm('Você tem certeza que deseja excluir o ID ' + id + '?')){
+            let tbody = document.getElementById('tbody');
+            // vamos ter que percorrer os itens do nosso array p verificar se nosso id recebido é o mesmo id que tem no array
+            for(let i = 0; i < this.arrayProdutos.length; i++){
+                if(this.arrayProdutos[i].id == id){
+                    // aqui vai acontecer o deletar do nosso registro array
+                    // splice() altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos.
+                    // passando índice do array e segunda arg é quantos registros queremos deletar
+                    this.arrayProdutos.splice(i, 1);
+                    tbody.deleteRow(i);
+                }
             }
         }
     }
 
     editar(){
-        alert('editar')
+        alert('editar');
     }
 }
 

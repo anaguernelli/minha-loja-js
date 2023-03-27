@@ -73,6 +73,7 @@ table th, td {
 table td img {
     width: 1.6rem;
     margin: .3rem;
+    cursor: pointer;
 }
 
 .center {
